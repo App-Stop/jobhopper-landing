@@ -31,9 +31,9 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white">
       <div
-        className={`${container} grid items-center gap-12 py-12 lg:py-20 xl:grid-cols-[minmax(0,1fr)_minmax(0,560px)] xl:gap-12 xl:py-20 2xl:grid-cols-[minmax(0,750px)_minmax(0,736px)] 2xl:gap-16 2xl:py-[110px]`}
+        className={`${container} grid items-center gap-12 pt-12 lg:pt-15 xl:grid-cols-[minmax(0,1fr)_minmax(0,560px)] xl:gap-12 xl:pt-15 2xl:grid-cols-[minmax(0,750px)_minmax(0,736px)] 2xl:gap-16 2xl:pt-[90px]`}
       >
-        <div className="flex flex-col items-start justify-center gap-5">
+        <div className="flex flex-col items-start justify-center gap-5 mb-10">
           <div className="flex items-center gap-1.5 rounded-full bg-green-bg-soft px-2.5 py-1">
             <HardHat className="size-5 shrink-0 text-green" strokeWidth={2.2} />
             <p className="text-[12px] font-semibold text-green sm:text-[13px]">
@@ -55,7 +55,7 @@ export default function Hero() {
           <StoreBadges className="mt-1" />
         </div>
 
-        <div className="mx-auto w-full max-w-[560px] xl:max-w-none">
+        <div className="mx-auto w-full max-w-[560px] self-end xl:max-w-none">
           <HeroArt />
         </div>
       </div>
