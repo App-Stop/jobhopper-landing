@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Design tokens — sourced from the Figma file's local variables
+   (Job Hopper Landing / Home · node 1:79)
+   ------------------------------------------------------------------ */
+@theme {
+  /* xl (1280px) targets laptops; 2xl is reserved for large desktop displays */
+  --breakpoint-2xl: 105rem; /* 1680px */
+
+  --color-navy: #1e3a5f; /* Dark Blue   */
+  --color-navy-light: #3e78c5; /* gradient stop */
+  --color-green: #10b981; /* Green       */
+  --color-blue-bg: #d0e4ff; /* BG Blue     */
+  --color-blue-bg-soft: #e7f1ff; /* BG Blue1    */
+  --color-green-bg: #c9feec; /* BG Green    */
+  --color-green-bg-soft: #e2fff5; /* BG Green1   */
+  --color-ink: #191919; /* Dark Grey / Text Grey */
+  --color-ink-soft: #1e1e1e;
+  --color-muted: #5c5c5c; /* Light Grey Text */
+  --color-chip: #f0f0f0; /* Very Light Grey */
+  --color-stroke: #cfcfcf; /* Stroke      */
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* "low" effect from Figma: drop shadow 0 4 80 #00000029 */
+  --shadow-low: 0 4px 80px rgba(0, 0, 0, 0.16);
+  --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.16);
+  --shadow-tile: 0 3.2px 64px rgba(0, 0, 0, 0.16);
+}
+
+/* The navy → lighter-blue horizontal band used by the two CTA sections */
+@utility bg-navy-band {
+  background-image: linear-gradient(
+    90deg,
+    #3e78c5 0%,
+    #1e3a5f 30.768%,
+    #1e3a5f 69.76%,
+    #3e78c5 100%
+  );
+}
+
+/* ------------------------------------------------------------------
+   Hero cross-fade — mirrors the Figma timeline on nodes 1:83 "Worker"
+   and 1:106 "Customer": a 9s loop where each variant holds for ~4s and
+   cross-fades over 0.5s (times 0 / 44.44% / 50% / 94.44% / 100%).
+   ------------------------------------------------------------------ */
+@keyframes hero-worker {
+  0% {
+    opacity: 1;
+  }
+  44.44% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    opacity: 0;
+  }
+  94.44% {
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-customer {
+  0% {
+    opacity: 0;
+  }
+  44.44% {
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    opacity: 1;
+  }
+  94.44% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@utility hero-fade-worker {
+  animation: hero-worker 9s linear infinite;
+}
+
+@utility hero-fade-customer {
+  animation: hero-customer 9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-worker,
+  .hero-fade-customer {
+    animation: none;
+  }
+  .hero-fade-customer {
+    opacity: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
