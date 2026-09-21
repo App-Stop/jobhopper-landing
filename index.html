@@ -18,6 +18,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Desktop is laid out at the Figma board width (1920px) and scaled
+      // down proportionally so laptops see the same composition.
+      ;(function () {
+        var root = document.getElementById("root")
+        function fit() {
+          var w = document.documentElement.clientWidth
+          root.style.zoom = matchMedia("(min-width: 81rem)").matches && w < 1920 ? String(w / 1920) : ""
+        }
+        fit()
+        addEventListener("resize", fit)
+      })()
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

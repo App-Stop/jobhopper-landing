@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import { Button, container, Eyebrow } from './ui'
-import brokenPipe from '../assets/broken-pipe.png'
+import EmergencyArt from './EmergencyArt'
 import { useDownloadModal } from './downloadModalContext'
 
 const features = [
@@ -54,12 +54,9 @@ export default function Emergency() {
           </div>
         </div>
 
-        {/* Figma node 1:326 — tracking screen and both modals as one frame */}
-        <img
-          src={brokenPipe}
-          alt="Tracking an emergency technician en route in the JobHopper app"
-          className="order-1 w-full max-w-[560px] object-contain lg:max-w-[700px] xl:order-2 xl:max-w-[600px] 2xl:max-w-[838px]"
-        />
+        <div className="order-1 w-full max-w-[560px] lg:max-w-[700px] xl:order-2 xl:max-w-[600px] 2xl:max-w-[751px]">
+          <EmergencyArt />
+        </div>
       </div>
     </section>
   )
