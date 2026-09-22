@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import escrowIcon from '../assets/icon-escrow.png'
 import backgroundCheckIcon from '../assets/icon-background-check.png'
 import conflictIcon from '../assets/icon-conflict-resolution.png'
+import { revealStack, useGsapReveal } from '../lib/gsap'
 import { container, Eyebrow } from './ui'
 
 const pillars = [
@@ -22,10 +24,24 @@ const pillars = [
 ]
 
 export default function Trust() {
+  const scope = useRef(null)
+
+  // Heading block rises first, then the three pillars follow one at a time.
+  useGsapReveal(scope, () =>
+    revealStack({
+      trigger: scope.current,
+      head: '[data-trust-head] > *',
+      items: '[data-trust-card]',
+    }),
+  )
+
   return (
-    <section className="bg-white py-16 lg:py-[120px]">
+    <section ref={scope} className="bg-white py-16 lg:py-[120px]">
       <div className={`${container} flex flex-col items-center gap-10`}>
-        <div className="flex max-w-[1000px] flex-col items-center gap-4">
+        <div
+          data-trust-head
+          className="flex max-w-[1000px] flex-col items-center gap-4"
+        >
           <Eyebrow>Institutional Safety</Eyebrow>
           <h2 className="text-center text-[28px] font-extrabold text-navy sm:text-[34px] lg:text-[40px]">
             Trust Built Into Every Transaction
@@ -41,6 +57,7 @@ export default function Trust() {
           {pillars.map(({ icon, title, body }) => (
             <div
               key={title}
+              data-trust-card
               className="flex flex-col items-center justify-center gap-6 rounded-[20px] px-6 pt-8 pb-4 text-center sm:gap-10 sm:px-10 sm:pt-12 sm:pb-8 lg:gap-[60px] lg:pt-[60px] lg:pb-10"
             >
               <img

@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Check } from 'lucide-react'
+import { revealSplit, useGsapReveal } from '../lib/gsap'
 import { Button, container, Eyebrow } from './ui'
 import EmergencyArt from './EmergencyArt'
 import { useDownloadModal } from './downloadModalContext'
@@ -11,12 +13,28 @@ const features = [
 
 export default function Emergency() {
   const openModal = useDownloadModal()
+  const scope = useRef(null)
+
+  // Mirrored from the neighbouring sections, matching the flipped layout:
+  // copy enters from the left, the phone and its two modals from the right.
+  useGsapReveal(scope, () =>
+    revealSplit({
+      trigger: scope.current,
+      art: '[data-split-art]',
+      copy: '[data-split-copy] > *',
+      side: 'right',
+    }),
+  )
+
   return (
-    <section className="bg-navy py-16 xl:py-20 2xl:py-0">
+    <section ref={scope} className="overflow-x-clip bg-navy py-16 xl:py-20 2xl:py-0">
       <div
         className={`${container} flex flex-col items-center gap-12 xl:min-h-[640px] 2xl:min-h-[800px] xl:flex-row xl:gap-16 2xl:gap-[120px]`}
       >
-        <div className="order-2 flex min-w-0 flex-1 flex-col items-start justify-center gap-8 lg:gap-10 xl:order-1">
+        <div
+          data-split-copy
+          className="order-2 flex min-w-0 flex-1 flex-col items-start justify-center gap-8 lg:gap-10 xl:order-1"
+        >
           <Eyebrow variant="green">Emergency Service</Eyebrow>
 
           <div className="flex flex-col gap-4">
@@ -54,7 +72,10 @@ export default function Emergency() {
           </div>
         </div>
 
-        <div className="order-1 w-full max-w-[560px] lg:max-w-[700px] xl:order-2 xl:max-w-[600px] 2xl:max-w-[751px]">
+        <div
+          data-split-art
+          className="order-1 w-full max-w-[560px] lg:max-w-[700px] xl:order-2 xl:max-w-[600px] 2xl:max-w-[751px]"
+        >
           <EmergencyArt />
         </div>
       </div>

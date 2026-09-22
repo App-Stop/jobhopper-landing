@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Check } from 'lucide-react'
+import { revealSplit, useGsapReveal } from '../lib/gsap'
 import { AvailableOn, Button, container, Eyebrow } from './ui'
 import forWorkers from '../assets/for-workers.png'
 import { useDownloadModal } from './downloadModalContext'
@@ -11,19 +13,35 @@ const benefits = [
 
 export default function ForWorkers() {
   const openModal = useDownloadModal()
+  const scope = useRef(null)
+
+  // Same crossing as For Customers: artwork from the left, copy from the right.
+  useGsapReveal(scope, () =>
+    revealSplit({
+      trigger: scope.current,
+      art: '[data-split-art]',
+      copy: '[data-split-copy] > *',
+      side: 'left',
+    }),
+  )
+
   return (
-    <section className="bg-green-bg-soft py-16 xl:py-20 2xl:py-0">
+    <section ref={scope} className="overflow-x-clip bg-green-bg-soft py-16 xl:py-20 2xl:py-0">
       <div
         className={`${container} flex flex-col items-center gap-12 xl:min-h-[640px] 2xl:min-h-[800px] xl:flex-row xl:gap-16 2xl:gap-[120px]`}
       >
         {/* Figma node 1:365 — both worker app screens as one frame */}
         <img
           src={forWorkers}
+          data-split-art
           alt="Browsing available jobs and tracking earnings in the JobHopper app"
           className="w-full max-w-[460px] shrink-0 object-contain lg:max-w-[540px] xl:max-w-[500px] 2xl:max-w-[617px]"
         />
 
-        <div className="flex min-w-0 flex-1 flex-col items-start gap-6 lg:gap-8">
+        <div
+          data-split-copy
+          className="flex min-w-0 flex-1 flex-col items-start gap-6 lg:gap-8"
+        >
           <Eyebrow variant="outline">For Workers</Eyebrow>
 
           <div className="flex flex-col gap-4">

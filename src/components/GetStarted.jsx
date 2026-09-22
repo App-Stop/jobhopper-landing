@@ -1,14 +1,32 @@
+import { useRef } from 'react'
+import { revealSplit, useGsapReveal } from '../lib/gsap'
 import { container, StoreBadges } from './ui'
 import getStarted from '../assets/get-started.png'
 import qrCode from '../assets/qr-code.png'
 
 export default function GetStarted() {
+  const scope = useRef(null)
+
+  // Closing CTA: copy rises in from the left, the device mockups from the
+  // right — the same crossing the sections above it use.
+  useGsapReveal(scope, () =>
+    revealSplit({
+      trigger: scope.current,
+      art: '[data-split-art]',
+      copy: '[data-split-copy] > *',
+      side: 'right',
+    }),
+  )
+
   return (
-    <section className="bg-navy-band py-16 lg:py-20">
+    <section ref={scope} className="overflow-x-clip bg-navy-band py-16 lg:py-20">
       <div
         className={`${container} flex flex-col items-center gap-12 xl:flex-row xl:gap-[60px] 2xl:px-[300px]`}
       >
-        <div className="flex min-w-0 flex-1 flex-col items-start gap-10 2xl:gap-[60px]">
+        <div
+          data-split-copy
+          className="flex min-w-0 flex-1 flex-col items-start gap-10 2xl:gap-[60px]"
+        >
           <div className="flex flex-col gap-4">
             <h2 className="max-w-[869px] text-[32px] font-extrabold text-white sm:text-[40px] lg:text-[44px] 2xl:text-[48px]">
               Get Started — Choose How You&apos;ll Use JobHopper
@@ -32,6 +50,7 @@ export default function GetStarted() {
         {/* Figma node 1:814 — both tilted device mockups as one frame */}
         <img
           src={getStarted}
+          data-split-art
           alt="The JobHopper app shown on two phones"
           className="w-full max-w-[300px] shrink-0 object-contain sm:max-w-[360px] lg:max-w-[380px] 2xl:max-w-[437px]"
         />

@@ -20,9 +20,9 @@ const options = [
 export default function NeedHelpBand() {
   const openModal = useDownloadModal()
   return (
-    <section className="bg-navy-band py-10 sm:py-12 lg:min-h-[243px] lg:py-8">
+    <section className="shrink-0 bg-navy-band py-10 sm:py-12 lg:min-h-[200px] lg:py-6">
       <div
-        className={`${container} flex flex-col items-center justify-center gap-6`}
+        className={`${container} flex flex-col items-center justify-center gap-5`}
       >
         <p className="w-full max-w-[750px] text-center text-[18px] leading-[32px] font-semibold text-white sm:text-[20px]">
           What do you need help with?

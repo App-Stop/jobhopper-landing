@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Check } from 'lucide-react'
+import { revealSplit, useGsapReveal } from '../lib/gsap'
 import { AvailableOn, Button, container, Eyebrow } from './ui'
 import forCustomers from '../assets/for-customers.png'
 import { useDownloadModal } from './downloadModalContext'
@@ -11,19 +13,35 @@ const features = [
 
 export default function ForCustomers() {
   const openModal = useDownloadModal()
+  const scope = useRef(null)
+
+  // Artwork enters from the left, copy from the right, both at once.
+  useGsapReveal(scope, () =>
+    revealSplit({
+      trigger: scope.current,
+      art: '[data-split-art]',
+      copy: '[data-split-copy] > *',
+      side: 'left',
+    }),
+  )
+
   return (
-    <section className="bg-blue-bg-soft py-16 xl:py-20 2xl:py-0">
+    <section ref={scope} className="overflow-x-clip bg-blue-bg-soft py-16 xl:py-20 2xl:py-0">
       <div
         className={`${container} flex flex-col items-center gap-12 xl:min-h-[640px] 2xl:min-h-[800px] xl:flex-row xl:gap-16 2xl:gap-[120px]`}
       >
         {/* Figma node 1:262 — photo and in-app card exported as one frame */}
         <img
           src={forCustomers}
+          data-split-art
           alt="A verified professional alongside their in-app JobHopper profile card"
           className="w-full max-w-[380px] shrink-0 object-contain lg:max-w-[440px] xl:max-w-[440px] 2xl:max-w-[529px]"
         />
 
-        <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-8 lg:gap-10">
+        <div
+          data-split-copy
+          className="flex min-w-0 flex-1 flex-col items-start justify-center gap-8 lg:gap-10"
+        >
           <Eyebrow variant="outline">for customers</Eyebrow>
 
           <div className="flex flex-col gap-4">
