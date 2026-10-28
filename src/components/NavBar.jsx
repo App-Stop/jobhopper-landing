@@ -20,7 +20,7 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 w-full border-b border-stroke bg-white">
       <div className={`${container} flex items-center justify-between py-4`}>
         {/* Figma node 1:856 (224 × 40) */}
-        <a href="#" className="shrink-0">
+        <a href="/" className="shrink-0">
           <img
             src={logo}
             alt="JobHopper"
