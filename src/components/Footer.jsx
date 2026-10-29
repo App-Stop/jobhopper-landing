@@ -15,6 +15,8 @@ const columns = [
   },
 ]
 
+const hrefs = { 'Contact Support': '/support' }
+
 export default function Footer() {
   return (
     <footer className="bg-white px-5 pt-16 pb-10 sm:px-8 lg:px-20 lg:pt-20">
@@ -40,7 +42,7 @@ export default function Footer() {
                 {links.map((link) => (
                   <a
                     key={link}
-                    href="#"
+                    href={hrefs[link] ?? '#'}
                     className="text-[14px] text-muted transition-colors hover:text-navy"
                   >
                     {link}

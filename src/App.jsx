@@ -11,11 +11,13 @@ import NeedHelpBand from './components/NeedHelpBand'
 import Trust from './components/Trust'
 import { useFoldHeight } from './lib/fold'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Support from './pages/Support'
 import TermsAndConditions from './pages/TermsAndConditions'
 
 const pages = {
   '/privacy-policy': PrivacyPolicy,
   '/terms-and-conditions': TermsAndConditions,
+  '/support': Support,
 }
 
 function Home() {
