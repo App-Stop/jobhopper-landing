@@ -56,7 +56,7 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-4 border-t border-stroke pt-8 text-[14px] text-muted sm:flex-row sm:items-center">
           <p>© 2026 JobHopper Technologies Inc. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="/privacy-policy" className="transition-colors hover:text-navy">
+            <a href="/privacy-and-policy" className="transition-colors hover:text-navy">
               Privacy Policy
             </a>
             <a href="/terms-and-conditions" className="transition-colors hover:text-navy">

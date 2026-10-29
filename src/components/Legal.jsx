@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { container, Eyebrow } from './ui'
 
 const legalPages = [
-  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/privacy-and-policy', label: 'Privacy Policy' },
   { href: '/terms-and-conditions', label: 'Terms & Conditions' },
 ]
 

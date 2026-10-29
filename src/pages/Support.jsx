@@ -208,7 +208,7 @@ export default function Support() {
                   <p className="text-[14px] text-muted">
                     We use your details only to answer you. See our{' '}
                     <a
-                      href="/privacy-policy"
+                      href="/privacy-and-policy"
                       className="font-semibold text-green underline decoration-green/40 underline-offset-4 hover:decoration-green"
                     >
                       Privacy Policy

@@ -15,7 +15,7 @@ import Support from './pages/Support'
 import TermsAndConditions from './pages/TermsAndConditions'
 
 const pages = {
-  '/privacy-policy': PrivacyPolicy,
+  '/privacy-and-policy': PrivacyPolicy,
   '/terms-and-conditions': TermsAndConditions,
   '/support': Support,
 }

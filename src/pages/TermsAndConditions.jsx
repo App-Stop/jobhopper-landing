@@ -7,7 +7,7 @@ const sections = [
     body: (
       <P>
         By creating an account or using JobHopper you agree to these Terms
-        &amp; Conditions and to our <A href="/privacy-policy">Privacy Policy</A>.
+        &amp; Conditions and to our <A href="/privacy-and-policy">Privacy Policy</A>.
         If you do not agree, do not use the app. The app is provided by{' '}
         <Ph>[Legal company name]</Ph> ("<B>JobHopper</B>", "we", "us").
       </P>
@@ -308,7 +308,7 @@ const sections = [
         a worker's live route with the customer while the worker is travelling
         to the job, and send push notifications. You control these with your
         phone's permissions. Calls are not recorded by us. Details are in the{' '}
-        <A href="/privacy-policy">Privacy Policy</A>.
+        <A href="/privacy-and-policy">Privacy Policy</A>.
       </P>
     ),
   },
