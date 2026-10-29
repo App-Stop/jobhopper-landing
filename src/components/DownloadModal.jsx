@@ -1,9 +1,9 @@
+import { X } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { DownloadModalContext } from './downloadModalContext'
 import { StoreBadges } from './ui'
 import getStarted from '../assets/get-started.png'
 import qrCode from '../assets/qr-code.png'
-import closeIcon from '../assets/icon-close.svg'
 
 export function DownloadModalProvider({ children }) {
   const [open, setOpen] = useState(false)
@@ -56,17 +56,19 @@ function DownloadModal({ onClose }) {
           className="pointer-events-none absolute top-[298px] left-[-368px] hidden size-[736px] rounded-full bg-green-bg sm:block"
         />
 
+        {/* Inset by the card's side padding and centred on the eyebrow pill,
+            so it lines up with the header row instead of floating in the corner. */}
         <button
           type="button"
           aria-label="Close"
           onClick={onClose}
-          className="absolute top-3 right-3 size-10 cursor-pointer sm:top-5 sm:right-5 sm:size-[50px]"
+          className="absolute top-7 right-6 z-10 grid size-10 cursor-pointer place-items-center rounded-full bg-chip text-navy transition-colors hover:bg-blue-bg-soft focus-visible:ring-2 focus-visible:ring-navy/30 focus-visible:outline-none sm:top-9 sm:right-[30px] sm:size-11"
         >
-          <img src={closeIcon} alt="" className="size-full" />
+          <X className="size-5 sm:size-6" strokeWidth={2.25} />
         </button>
 
         <div className="relative flex flex-col gap-10 sm:gap-[60px]">
-          <div className="flex flex-col items-start gap-4 pr-10">
+          <div className="flex flex-col items-start gap-4 pr-14">
             <span className="inline-flex rounded-full bg-blue-bg-soft px-4 py-2 text-[13px] font-bold text-navy uppercase sm:text-[14px]">
               You&apos;re one tap away
             </span>

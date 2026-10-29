@@ -26,7 +26,7 @@ export default function ForWorkers() {
   )
 
   return (
-    <section ref={scope} className="overflow-x-clip bg-green-bg-soft py-16 xl:py-20 2xl:py-0">
+    <section ref={scope} id="become-a-provider" className="scroll-mt-20 overflow-x-clip bg-green-bg-soft py-16 xl:py-20 2xl:py-0">
       <div
         className={`${container} flex flex-col items-center gap-12 xl:min-h-[640px] 2xl:min-h-[800px] xl:flex-row xl:gap-16 2xl:gap-[120px]`}
       >

@@ -1,20 +1,49 @@
 import { Menu, X } from 'lucide-react'
 import { SiApple, SiGoogleplay } from 'react-icons/si'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { container } from './ui'
 import { useDownloadModal } from './downloadModalContext'
 import logo from '../assets/logo.png'
 
+// Each link points at a landing-page section id. The leading "/" makes them
+// work from the other pages too.
 const links = [
-  { label: 'Find Reliable Workers', active: true },
-  { label: 'Become a Provider' },
-  { label: 'How It Works' },
-  { label: 'Trust & Verification' },
+  { label: 'Find Reliable Workers', id: 'find-workers' },
+  { label: 'Become a Provider', id: 'become-a-provider' },
+  { label: 'How It Works', id: 'how-it-works' },
+  { label: 'Trust & Verification', id: 'trust' },
 ]
+
+/** The section currently in the middle of the viewport, if any (home page only). */
+function useActiveSection() {
+  const [active, setActive] = useState(null)
+
+  useEffect(() => {
+    const sections = links
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean)
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+          else setActive((cur) => (cur === e.target.id ? null : cur))
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    )
+    sections.forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
+
+  return active
+}
 
 export default function NavBar() {
   const [open, setOpen] = useState(false)
   const openModal = useDownloadModal()
+  const activeId = useActiveSection()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-stroke bg-white">
@@ -29,22 +58,30 @@ export default function NavBar() {
         </a>
 
         <nav className="hidden items-start gap-10 xl:flex">
-          {links.map(({ label, active }) => (
-            <a
-              key={label}
-              href="#"
-              className="flex flex-col items-center justify-center gap-1"
-            >
-              <span
-                className={`text-[16px] whitespace-nowrap ${
-                  active ? 'font-semibold text-navy' : 'font-normal text-muted'
-                }`}
+          {links.map(({ label, id }) => {
+            const active = id === activeId
+            return (
+              <a
+                key={label}
+                href={`/#${id}`}
+                aria-current={active ? 'location' : undefined}
+                className="flex flex-col items-center justify-center gap-1"
               >
-                {label}
-              </span>
-              {active && <span className="h-0.5 w-4 rounded-sm bg-green" />}
-            </a>
-          ))}
+                <span
+                  className={`text-[16px] whitespace-nowrap transition-colors ${
+                    active
+                      ? 'font-semibold text-navy'
+                      : 'font-normal text-muted hover:text-navy'
+                  }`}
+                >
+                  {label}
+                </span>
+                <span
+                  className={`h-0.5 w-4 rounded-sm bg-green transition-opacity ${active ? 'opacity-100' : 'opacity-0'}`}
+                />
+              </a>
+            )
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -74,13 +111,13 @@ export default function NavBar() {
       {open && (
         <nav className="border-t border-stroke bg-white xl:hidden">
           <div className={`${container} flex flex-col gap-1 py-4`}>
-            {links.map(({ label, active }) => (
+            {links.map(({ label, id }) => (
               <a
                 key={label}
-                href="#"
+                href={`/#${id}`}
                 onClick={() => setOpen(false)}
                 className={`rounded-lg px-2 py-3 text-[16px] ${
-                  active ? 'font-semibold text-navy' : 'font-normal text-muted'
+                  id === activeId ? 'font-semibold text-navy' : 'font-normal text-muted'
                 }`}
               >
                 {label}

@@ -36,7 +36,7 @@ export default function Trust() {
   )
 
   return (
-    <section ref={scope} className="bg-white py-16 lg:py-[120px]">
+    <section ref={scope} id="trust" className="scroll-mt-20 bg-white py-16 lg:py-[120px]">
       <div className={`${container} flex flex-col items-center gap-10`}>
         <div
           data-trust-head

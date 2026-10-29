@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Emergency from './components/Emergency'
 import Footer from './components/Footer'
 import ForCustomers from './components/ForCustomers'
@@ -22,6 +23,13 @@ const pages = {
 
 function Home() {
   useFoldHeight()
+
+  // Arriving from another page via a navbar link (/#how-it-works): the browser
+  // looked for the anchor before React rendered it, so jump there now.
+  useEffect(() => {
+    const target = window.location.hash && document.getElementById(window.location.hash.slice(1))
+    if (target) requestAnimationFrame(() => target.scrollIntoView())
+  }, [])
 
   return (
     <>

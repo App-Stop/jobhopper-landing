@@ -123,7 +123,8 @@ export default function HowItWorks() {
   return (
     <section
       ref={scope}
-      className="relative overflow-hidden bg-white py-16 lg:py-[120px]"
+      id="how-it-works"
+      className="relative scroll-mt-20 overflow-hidden bg-white py-16 lg:py-[120px]"
     >
       <div className={container}>
         <div
